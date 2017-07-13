@@ -2,6 +2,7 @@ class Course <ActiveRecord::Base
   belongs_to :instructor
   has_many :course_students
   has_many :students, :through => :course_students
+  extend Slugifiable::ClassMethods
 
   def slug
     title.downcase.gsub(" ","-")
@@ -11,8 +12,8 @@ class Course <ActiveRecord::Base
     instructor.name.downcase.gsub(" ","-")
   end
 
-  def self.find_by_slug(slug)
-    Course.all.find{|u| u.slug == slug}
-  end
+  # def self.find_by_slug(slug)
+  #   Course.all.find{|u| u.slug == slug}
+  # end
 
 end
